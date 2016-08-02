@@ -9,11 +9,13 @@
 ;       VB          scratch
 
 
+option binary
+
     ; location for the game icon (interrogation mark)
-    LD VA, 0
-    LD VB, 0
-    LD I,  interrogation_mark
-    DRW VA, VB, 4
+    LD V0, 0
+    LD V1, 0
+    LD I, interrogation_mark
+    DRW V0, V1, 8
 
 interrogation_mark:
     DW #6090
