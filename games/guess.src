@@ -1,0 +1,22 @@
+; GUESSING GAME
+; The game gets a random number, and ask 5 times
+; for the number. Each attemp gives a hint about
+; the number (lower / higher)
+
+;     register      contents
+; -------------------------------
+;       VA          scratch
+;       VB          scratch
+
+
+    ; location for the game icon (interrogation mark)
+    LD VA, 0
+    LD VB, 0
+    LD I,  interrogation_mark
+    DRW VA, VB, 4
+
+interrogation_mark:
+    DW #6090
+    DW #1020
+    DW #2000
+    DW #2000
