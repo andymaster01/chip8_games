@@ -1,2 +1,3 @@
 chipper/chipper
-*/**/*.chip8
+**/*.chip8
+**/*.chip8.lst
