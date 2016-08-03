@@ -5,20 +5,54 @@
 
 ;     register      contents
 ; -------------------------------
-;       VA          scratch
-;       VB          scratch
+;       V0          scratch
+;       V1          scratch
+;       V2          scratch
+
+;       V8          hearth X position
+;       V9          hearth Y position
+
+;       VA          lifes
 
 
 option binary
 
-    ; location for the game icon (interrogation mark)
+    LD VA, 5
+
+; draw game icon (interrogation mark)
     LD V0, 0
     LD V1, 0
     LD I, interrogation_mark
     DRW V0, V1, 8
+
+; draw hearths
+    LD V2, 5 ;total # of hearths to draw
+    LD V0, 0 ; hearth x position
+    LD V1, 20 ; hearth y position
+
+draw_hearth:
+    ADD V0, 10  ; hearth y position
+    LD  I, hearth
+    DRW V0, V1, 6
+
+    LD  V3,  1 ; the number to substract from the total hearths
+    SUB V2, V3 ; how many hearths left
+
+    SE  V2, 0 ;if no more hearths, continue
+    JP draw_hearth
+
+
+
+
+
 
 interrogation_mark:
     DW #6090
     DW #1020
     DW #2000
     DW #2000
+
+hearth:
+    DW #2277
+    DW #7F3E
+    DW #1C08
