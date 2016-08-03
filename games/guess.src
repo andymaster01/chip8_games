@@ -8,8 +8,10 @@
 ;       V0          scratch
 ;       V1          scratch
 ;       V2          scratch
+;       V3          scratch
 
-
+;       V6          random number
+;       V7          guessed number
 ;       V8          hearth X position
 ;       V9          hearth Y position
 
@@ -19,6 +21,8 @@
 option binary
 
     LD VA, 5
+
+    RND V6, 9
 
 ; draw game icon (interrogation mark)
     LD V0, 0
@@ -41,9 +45,57 @@ draw_hearth:
     SE  VA, 0 ;if no more hearths, continue
     JP draw_hearth
 
+loop:
+    
+    LD V7, 0    ; by default 0, when the print detects 0, doesnt print
 
+    LD V0, 1
+    SKP V0
+    LD V7, 1
 
+    LD V0, 2
+    SKP V0
+    LD V7, 2
 
+    LD V0, 3
+    SKP V0
+    LD V7, 3
+
+    LD V0, 4
+    SKP V0
+    LD V7, 4
+
+    LD V0, 5
+    SKP V0
+    LD V7, 5
+
+    LD V0, 6
+    SKP V0
+    LD V7, 6
+
+    LD V0, 7
+    SKP V0
+    LD V7, 7
+
+    LD V0, 8
+    SKP V0
+    LD V7, 8
+
+    LD V0, 9
+    SKP V0
+    LD V7, 9
+
+    ; when nothing was written (V7 is still 0) don't print
+    SNE V7, 0
+    JP loop
+
+    ; show entered number
+    LD F, V7
+    LD V0, 30
+    LD V1, 0
+
+    DRW V0, V1, 5
+    JP loop
 
 
 interrogation_mark:
